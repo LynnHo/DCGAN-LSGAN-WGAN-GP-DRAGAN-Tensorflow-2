@@ -35,5 +35,5 @@ python train_celeba_dcgan.py
 ```
 
 ## Datasets
-1. mnist will be automatically download
+1. mnist will be automatically downloaded
 2. celeba should be prepared by yourself in ./data/img_align_celeba
