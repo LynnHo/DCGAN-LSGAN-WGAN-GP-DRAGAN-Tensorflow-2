@@ -3,11 +3,8 @@
 Tensorflow implementation of DCGAN, LSGAN, WGAN and WGAN-GP
 
 DCGAN: [Unsupervised representation learning with deep convolutional generative adversarial networks](https://arxiv.org/abs/1511.06434) 
-
 LSGAN: [Least squares generative adversarial networks](https://pdfs.semanticscholar.org/0bbc/35bdbd643fb520ce349bdd486ef2c490f1fc.pdf)
-
 WGAN: [Wasserstein GAN](https://arxiv.org/abs/1701.07875)
-
 WGAN-GP: [Improved Training of Wasserstein GANs](http://arxiv.org/abs/1704.00028)
 
 ## Exemplar results
