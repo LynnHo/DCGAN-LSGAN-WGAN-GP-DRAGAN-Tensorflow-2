@@ -1,6 +1,6 @@
 # GANs
 
-Tensorflow implementation of DCGAN, LSGAN, WGAN and WGAN-GP
+Tensorflow implementation of DCGAN, LSGAN, WGAN and WGAN-GP, and we use DCGAN as the network architecture in all experiments.
 
 DCGAN: [Unsupervised representation learning with deep convolutional generative adversarial networks](https://arxiv.org/abs/1511.06434) 
 
