@@ -29,13 +29,13 @@ WGAN - WGAN-GP
 
 # Usage
 
-## Training examples
+## Train
 ```
 python train_mnist_dcgan.py
 python train_celeba_dcgan.py
 ...
 ```
-## Tensorboard examples
+## Tensorboard
 ```
 tensorboard --logdir=./summaries/celeba_wgan --port=6006
 ...
