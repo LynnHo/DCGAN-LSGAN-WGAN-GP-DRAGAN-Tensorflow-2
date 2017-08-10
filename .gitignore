@@ -1,0 +1,5 @@
+*.pyc
+summaries
+sample_images_while_training
+data
+checkpoints
