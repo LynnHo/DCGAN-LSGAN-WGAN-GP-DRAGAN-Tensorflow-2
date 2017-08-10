@@ -121,7 +121,7 @@ try:
         # train D
         for i in range(n_critic):
             # batch data
-            real_ipt = data_pool.batch('img')
+            real_ipt = data_pool.batch()
             z_ipt = np.random.normal(size=[batch_size, z_dim])
             d_summary_opt, _ = sess.run([d_summary, d_step], feed_dict={real: real_ipt, z: z_ipt})
         summary_writer.add_summary(d_summary_opt, it)
