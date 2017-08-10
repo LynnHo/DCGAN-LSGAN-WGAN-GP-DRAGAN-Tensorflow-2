@@ -15,6 +15,8 @@ epoch = 25
 batch_size = 64
 lr = 0.0002
 z_dim = 100
+clip = 0.01
+n_critic = 5
 gpu_id = 3
 
 ''' data '''
@@ -52,10 +54,25 @@ with tf.device('/gpu:%d' % gpu_id):
     f_logit = discriminator(fake)
 
     # losses
-    d_r_loss = tf.losses.mean_squared_error(tf.ones_like(r_logit), r_logit)
-    d_f_loss = tf.losses.mean_squared_error(tf.zeros_like(f_logit), f_logit)
-    d_loss = (d_r_loss + d_f_loss) / 2.0
-    g_loss = tf.losses.mean_squared_error(tf.ones_like(f_logit), f_logit)
+    def gradient_penalty(real, fake, f):
+        def interpolate(a, b):
+            shape = tf.concat((tf.shape(a)[0:1], tf.tile([1], [a.shape.ndims - 1])), axis=0)
+            alpha = tf.random_uniform(shape=shape, minval=0., maxval=1.)
+            inter = a + alpha * (b - a)
+            inter.set_shape(a.get_shape().as_list())
+            return inter
+
+        x = interpolate(real, fake)
+        pred = f(x)
+        gradients = tf.gradients(pred, x)[0]
+        slopes = tf.sqrt(tf.reduce_sum(tf.square(gradients), reduction_indices=range(1, x.shape.ndims)))
+        gp = tf.reduce_mean((slopes - 1.)**2)
+        return gp
+
+    wd = tf.reduce_mean(r_logit) - tf.reduce_mean(f_logit)
+    gp = gradient_penalty(real, fake, discriminator)
+    d_loss = -wd + gp * 10.0
+    g_loss = -tf.reduce_mean(f_logit)
 
     # otpims
     d_var = utils.trainable_variables('discriminator')
@@ -64,7 +81,7 @@ with tf.device('/gpu:%d' % gpu_id):
     g_step = tf.train.AdamOptimizer(learning_rate=lr, beta1=0.5).minimize(g_loss, var_list=g_var)
 
     # summaries
-    d_summary = utils.summary({d_loss: 'd_loss'})
+    d_summary = utils.summary({wd: 'wd', gp: 'gp'})
     g_summary = utils.summary({g_loss: 'g_loss'})
 
     # sample
@@ -80,10 +97,10 @@ it_cnt, update_cnt = utils.counter()
 # saver
 saver = tf.train.Saver(max_to_keep=5)
 # summary writer
-summary_writer = tf.summary.FileWriter('./summaries/celeba_lsgan', sess.graph)
+summary_writer = tf.summary.FileWriter('./summaries/celeba_wgan_gp', sess.graph)
 
 ''' initialization '''
-ckpt_dir = './checkpoints/celeba_lsgan'
+ckpt_dir = './checkpoints/celeba_wgan_gp'
 utils.mkdir(ckpt_dir + '/')
 if not utils.load_checkpoint(ckpt_dir, sess):
     sess.run(tf.global_variables_initializer())
@@ -92,7 +109,7 @@ if not utils.load_checkpoint(ckpt_dir, sess):
 try:
     z_ipt_sample = np.random.normal(size=[100, z_dim])
 
-    batch_epoch = len(data_pool) // (batch_size)
+    batch_epoch = len(data_pool) // (batch_size * n_critic)
     max_it = epoch * batch_epoch
     for it in range(sess.run(it_cnt), max_it):
         sess.run(update_cnt)
@@ -101,16 +118,16 @@ try:
         epoch = it // batch_epoch
         it_epoch = it % batch_epoch + 1
 
-        # batch data
-        real_ipt = data_pool.batch()
-        z_ipt = np.random.normal(size=[batch_size, z_dim])
-
         # train D
-        d_summary_opt, _ = sess.run([d_summary, d_step], feed_dict={real: real_ipt, z: z_ipt})
+        for i in range(n_critic):
+            # batch data
+            real_ipt = data_pool.batch('img')
+            z_ipt = np.random.normal(size=[batch_size, z_dim])
+            d_summary_opt, _ = sess.run([d_summary, d_step], feed_dict={real: real_ipt, z: z_ipt})
         summary_writer.add_summary(d_summary_opt, it)
 
         # train G
-        sess.run([g_step], feed_dict={z: z_ipt})
+        z_ipt = np.random.normal(size=[batch_size, z_dim])
         g_summary_opt, _ = sess.run([g_summary, g_step], feed_dict={z: z_ipt})
         summary_writer.add_summary(g_summary_opt, it)
 
@@ -127,7 +144,7 @@ try:
         if (it + 1) % 100 == 0:
             f_sample_opt = sess.run(f_sample, feed_dict={z: z_ipt_sample})
 
-            save_dir = './sample_images_while_training/celeba_lsgan'
+            save_dir = './sample_images_while_training/celeba_wgan_gp'
             utils.mkdir(save_dir + '/')
             utils.imwrite(utils.immerge(f_sample_opt, 10, 10), '%s/Epoch_(%d)_(%dof%d).jpg' % (save_dir, epoch, it_epoch, batch_epoch))
 
