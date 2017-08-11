@@ -12,16 +12,31 @@ WGAN-GP: [Improved Training of Wasserstein GANs](http://arxiv.org/abs/1704.00028
 
 ## Exemplar results
 
-### mnist 
+### mnist - 25 epoch
 DCGAN - LSGAN
 
-![alt DCGAN](./pics/mnist_dcgan_Epoch_25.jpg) ![](./pics/mnist_lsgan_Epoch_25.jpg)
+![](./pics/mnist_dcgan_Epoch_25.jpg) ![](./pics/mnist_lsgan_Epoch_25.jpg)
 
 WGAN - WGAN-GP
 
 ![](./pics/mnist_wgan_Epoch_25.jpg) ![](./pics/mnist_wgan_gp_Epoch_25.jpg)
 
-### celeba
+### celeba - 25 epoch
+DCGAN
+
+![](./pics/celeba_dcgan_Epoch_25.jpg) 
+
+LSGAN
+
+![](./pics/celeba_lsgan_Epoch_25.jpg)
+
+WGAN
+
+![](./pics/celeba_wgan_Epoch_25.jpg) 
+
+WGAN-GP
+
+![](./pics/celeba_wgan_gp_Epoch_25.jpg)
 
 # Prerequisites
 - tensorflow r1.2
