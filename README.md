@@ -48,7 +48,8 @@ left: WGAN 100 epoch, right: WGAN-GP 100 epoch
 ## Train
 ```
 python train_mnist_dcgan.py
-python train_celeba_dcgan.py
+python train_celeba_wgan.py
+python train_cartoon_wgan_gp.py
 ...
 ```
 ## Tensorboard
