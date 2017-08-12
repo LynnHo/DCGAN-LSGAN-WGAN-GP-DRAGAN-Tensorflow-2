@@ -12,7 +12,7 @@ WGAN-GP: [Improved Training of Wasserstein GANs](http://arxiv.org/abs/1704.00028
 
 ## Exemplar results
 
-### mnist - 50 epoch
+### Mnist - 50 epoch
 DCGAN - LSGAN
 
 ![](./pics/mnist_dcgan_50.jpg) ![](./pics/mnist_lsgan_50.jpg)
@@ -21,7 +21,7 @@ WGAN - WGAN-GP
 
 ![](./pics/mnist_wgan_50.jpg) ![](./pics/mnist_wgan_gp_50.jpg)
 
-### celeba
+### Celeba
 DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse)) 
 
 <img src="./pics/celeba_dcgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_dcgan_50.jpg" width="48%" height="48%">
@@ -34,7 +34,7 @@ left: WGAN 50 epoch, right: WGAN-GP 50 epoch
 
 <img src="./pics/celeba_wgan_50.jpg" width="48%" height="48%"> <img src="./pics/celeba_wgan_gp_50.jpg" width="48%" height="48%">
 
-### cartoon
+### Cartoon
 left: WGAN 100 epoch, right: WGAN-GP 100 epoch
 
 <img src="./pics/cartoon_wgan_100.jpg" width="48%" height="48%"> <img src="./pics/cartoon_wgan_gp_100.jpg" width="48%" height="48%">
@@ -59,5 +59,9 @@ tensorboard --logdir=./summaries/celeba_wgan --port=6006
 ```
 
 ## Datasets
-1. mnist will be automatically downloaded
-2. celeba should be prepared by yourself in ./data/img_align_celeba
+1. Mnist will be automatically downloaded
+2. Celeba should be prepared by yourself in ./data/img_align_celeba
+    - Download the dataset: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0
+3. The cartoon-face dataset should be prepared by yourself in ./data/faces
+    - Download the dataset: https://pan.baidu.com/s/1eSifHcA, password: g5qa
+    - Reference: https://zhuanlan.zhihu.com/p/24767059
