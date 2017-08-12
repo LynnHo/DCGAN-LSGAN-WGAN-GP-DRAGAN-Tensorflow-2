@@ -22,7 +22,7 @@ WGAN - WGAN-GP
 ![](./pics/mnist_wgan_50.jpg) ![](./pics/mnist_wgan_gp_50.jpg)
 
 ### celeba
-DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse))
+DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse)) 
 
 <img src="./pics/celeba_dcgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_dcgan_50.jpg" width="48%" height="48%">
 
@@ -30,7 +30,7 @@ LSGAN (left: 25 epoch, right: 50 epoch (heavy mode collapse))
 
 <img src="./pics/celeba_lsgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_lsgan_50.jpg" width="48%" height="48%">
 
-left: WGAN () right: WGAN-GP
+left: WGAN 50 epoch, right: WGAN-GP 50 epoch
 
 <img src="./pics/celeba_wgan_50.jpg" width="48%" height="48%"> <img src="./pics/celeba_wgan_gp_50.jpg" width="48%" height="48%">
 
