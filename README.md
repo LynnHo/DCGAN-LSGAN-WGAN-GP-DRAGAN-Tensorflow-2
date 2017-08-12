@@ -12,31 +12,31 @@ WGAN-GP: [Improved Training of Wasserstein GANs](http://arxiv.org/abs/1704.00028
 
 ## Exemplar results
 
-### mnist - 25 epoch
+### mnist - 50 epoch
 DCGAN - LSGAN
 
-![](./pics/mnist_dcgan_Epoch_25.jpg) ![](./pics/mnist_lsgan_Epoch_25.jpg)
+![](./pics/mnist_dcgan_50.jpg) ![](./pics/mnist_lsgan_50.jpg)
 
 WGAN - WGAN-GP
 
-![](./pics/mnist_wgan_Epoch_25.jpg) ![](./pics/mnist_wgan_gp_Epoch_25.jpg)
+![](./pics/mnist_wgan_50.jpg) ![](./pics/mnist_wgan_gp_50.jpg)
 
-### celeba - 25 epoch
-DCGAN
+### celeba
+DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse))
 
-![](./pics/celeba_dcgan_Epoch_25.jpg) 
+<img src="./pics/celeba_dcgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_dcgan_50.jpg" width="48%" height="48%">
 
-LSGAN
+LSGAN (left: 25 epoch, right: 50 epoch (heavy mode collapse))
 
-![](./pics/celeba_lsgan_Epoch_25.jpg)
+<img src="./pics/celeba_lsgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_lsgan_50.jpg" width="48%" height="48%">
 
-WGAN
+left: WGAN () right: WGAN-GP
 
-![](./pics/celeba_wgan_Epoch_25.jpg) 
+<img src="./pics/celeba_wgan_50.jpg" width="48%" height="48%"> <img src="./pics/celeba_wgan_gp_50.jpg" width="48%" height="48%">
 
-WGAN-GP
 
-![](./pics/celeba_wgan_gp_Epoch_25.jpg)
+
+![](./pics/celeba_wgan_gp_25.jpg)
 
 # Prerequisites
 - tensorflow r1.2

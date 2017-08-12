@@ -2,16 +2,16 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 
+import glob
 import utils
 import traceback
 import numpy as np
 import tensorflow as tf
-import data_mnist as data
-import models_mnist as models
+import models_64x64 as models
 
 
 """ param """
-epoch = 50
+epoch = 100
 batch_size = 64
 lr = 0.0002
 z_dim = 100
@@ -20,11 +20,17 @@ n_critic = 5
 gpu_id = 3
 
 ''' data '''
-utils.mkdir('./data/mnist/')
-data.mnist_download('./data/mnist')
-imgs, _, _ = data.mnist_load('./data/mnist')
-imgs.shape = imgs.shape + (1,)
-data_pool = utils.MemoryData({'img': imgs}, batch_size)
+# you should prepare your own data in ./data/faces
+# cartoon faces original size is [96, 96, 3]
+
+
+def preprocess_fn(img):
+    re_size = 64
+    img = tf.to_float(tf.image.resize_images(img, [re_size, re_size], method=tf.image.ResizeMethod.BICUBIC)) / 127.5 - 1
+    return img
+
+img_paths = glob.glob('./data/faces/*.jpg')
+data_pool = utils.DiskImageData(img_paths, batch_size, shape=[96, 96, 3], preprocess_fn=preprocess_fn)
 
 
 """ graphs """
@@ -35,7 +41,7 @@ with tf.device('/gpu:%d' % gpu_id):
 
     ''' graph '''
     # inputs
-    real = tf.placeholder(tf.float32, shape=[None, 28, 28, 1])
+    real = tf.placeholder(tf.float32, shape=[None, 64, 64, 3])
     z = tf.placeholder(tf.float32, shape=[None, z_dim])
 
     # generate
@@ -75,10 +81,10 @@ it_cnt, update_cnt = utils.counter()
 # saver
 saver = tf.train.Saver(max_to_keep=5)
 # summary writer
-summary_writer = tf.summary.FileWriter('./summaries/mnist_wgan', sess.graph)
+summary_writer = tf.summary.FileWriter('./summaries/cartoon_wgan', sess.graph)
 
 ''' initialization '''
-ckpt_dir = './checkpoints/mnist_wgan'
+ckpt_dir = './checkpoints/cartoon_wgan'
 utils.mkdir(ckpt_dir + '/')
 if not utils.load_checkpoint(ckpt_dir, sess):
     sess.run(tf.global_variables_initializer())
@@ -103,7 +109,7 @@ try:
             c_iter = n_critic
         for i in range(n_critic):
             # batch data
-            real_ipt = data_pool.batch('img')
+            real_ipt = data_pool.batch()
             z_ipt = np.random.normal(size=[batch_size, z_dim])
             d_summary_opt, _ = sess.run([d_summary, d_step], feed_dict={real: real_ipt, z: z_ipt})
         summary_writer.add_summary(d_summary_opt, it)
@@ -126,7 +132,7 @@ try:
         if (it + 1) % 100 == 0:
             f_sample_opt = sess.run(f_sample, feed_dict={z: z_ipt_sample})
 
-            save_dir = './sample_images_while_training/mnist_wgan'
+            save_dir = './sample_images_while_training/cartoon_wgan'
             utils.mkdir(save_dir + '/')
             utils.imwrite(utils.immerge(f_sample_opt, 10, 10), '%s/Epoch_(%d)_(%dof%d).jpg' % (save_dir, epoch, it_epoch, batch_epoch))
 

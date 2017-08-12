@@ -11,7 +11,7 @@ import models_mnist as models
 
 
 """ param """
-epoch = 25
+epoch = 50
 batch_size = 64
 lr = 0.0002
 z_dim = 100

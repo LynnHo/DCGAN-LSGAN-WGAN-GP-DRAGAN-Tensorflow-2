@@ -11,7 +11,7 @@ import models_64x64 as models
 
 
 """ param """
-epoch = 25
+epoch = 50
 batch_size = 64
 lr = 0.0002
 z_dim = 100
@@ -39,7 +39,7 @@ data_pool = utils.DiskImageData(img_paths, batch_size, shape=[218, 172, 3], prep
 with tf.device('/gpu:%d' % gpu_id):
     ''' models '''
     generator = models.generator
-    discriminator = models.discriminator
+    discriminator = models.discriminator_wgan_gp
 
     ''' graph '''
     # inputs
