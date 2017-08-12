@@ -34,9 +34,10 @@ left: WGAN 50 epoch, right: WGAN-GP 50 epoch
 
 <img src="./pics/celeba_wgan_50.jpg" width="48%" height="48%"> <img src="./pics/celeba_wgan_gp_50.jpg" width="48%" height="48%">
 
+### cartoon
+left: WGAN 100 epoch, right: WGAN-GP 100 epoch
 
-
-![](./pics/celeba_wgan_gp_25.jpg)
+<img src="./pics/cartoon_wgan_100.jpg" width="48%" height="48%"> <img src="./pics/cartoon_wgan_gp_100.jpg" width="48%" height="48%">
 
 # Prerequisites
 - tensorflow r1.2
