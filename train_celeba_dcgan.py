@@ -19,18 +19,18 @@ gpu_id = 3
 
 ''' data '''
 # you should prepare your own data in ./data/img_align_celeba
-# celeba original size is [218, 172, 3]
+# celeba original size is [218, 178, 3]
 
 
 def preprocess_fn(img):
     crop_size = 108
     re_size = 64
-    img = tf.image.crop_to_bounding_box(img, (218 - crop_size) // 2, (172 - crop_size) // 2, crop_size, crop_size)
+    img = tf.image.crop_to_bounding_box(img, (218 - crop_size) // 2, (178 - crop_size) // 2, crop_size, crop_size)
     img = tf.to_float(tf.image.resize_images(img, [re_size, re_size], method=tf.image.ResizeMethod.BICUBIC)) / 127.5 - 1
     return img
 
 img_paths = glob.glob('./data/img_align_celeba/*.jpg')
-data_pool = utils.DiskImageData(img_paths, batch_size, shape=[218, 172, 3], preprocess_fn=preprocess_fn)
+data_pool = utils.DiskImageData(img_paths, batch_size, shape=[218, 178, 3], preprocess_fn=preprocess_fn)
 
 
 """ graphs """
