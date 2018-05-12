@@ -1,8 +1,14 @@
+***Recommendation***
+
+- Our GAN based work for facial attribute editing - https://github.com/LynnHo/AttGAN-Tensorflow.
+
+---
+
 # GANs
 
 Tensorflow implementation of DCGAN, LSGAN, WGAN and WGAN-GP, and we use DCGAN as the network architecture in all experiments.
 
-DCGAN: [Unsupervised representation learning with deep convolutional generative adversarial networks](https://arxiv.org/abs/1511.06434) 
+DCGAN: [Unsupervised representation learning with deep convolutional generative adversarial networks](https://arxiv.org/abs/1511.06434)
 
 LSGAN: [Least squares generative adversarial networks](https://pdfs.semanticscholar.org/0bbc/35bdbd643fb520ce349bdd486ef2c490f1fc.pdf)
 
@@ -22,7 +28,7 @@ WGAN - WGAN-GP
 ![](./pics/mnist_wgan_50.jpg) ![](./pics/mnist_wgan_gp_50.jpg)
 
 ### Celeba
-DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse)) 
+DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse))
 
 <img src="./pics/celeba_dcgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_dcgan_50.jpg" width="48%" height="48%">
 
