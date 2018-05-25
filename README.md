@@ -69,7 +69,9 @@ tensorboard --logdir=./summaries/celeba_wgan --port=6006
 2. Celeba should be prepared by yourself in ./data/img_align_celeba/*.jpg
     - Download the dataset: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0
     - the above links might be inaccessible, the alternative is
-        - https://pan.baidu.com/s/1eSNpdRG#list/path=%2FCelebA%2FImg -> img_align_celeba.zip
+        - ***img_align_celeba.zip***
+            - https://pan.baidu.com/s/1eSNpdRG#list/path=%2FCelebA%2FImg or
+            - https://drive.google.com/drive/folders/0B7EVK8r0v71pTUZsaXdaSnZBZzg
 3. The cartoon-face dataset should be prepared by yourself in ./data/faces
     - Download the dataset: https://pan.baidu.com/s/1eSifHcA, password: g5qa
     - Reference: https://zhuanlan.zhihu.com/p/24767059
