@@ -101,7 +101,7 @@ try:
             c_iter = 100
         else:
             c_iter = n_critic
-        for i in range(n_critic):
+        for i in range(c_iter):
             # batch data
             real_ipt = data_pool.batch('img')
             z_ipt = np.random.normal(size=[batch_size, z_dim])
