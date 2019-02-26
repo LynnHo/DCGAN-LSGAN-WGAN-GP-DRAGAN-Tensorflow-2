@@ -16,7 +16,7 @@ batch_size = 64
 lr = 0.0002
 z_dim = 100
 n_critic = 5
-gpu_id = 3
+gpu_id = 0
 
 ''' data '''
 utils.mkdir('./data/mnist/')

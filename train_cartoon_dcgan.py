@@ -15,7 +15,7 @@ epoch = 25
 batch_size = 64
 lr = 0.0002
 z_dim = 100
-gpu_id = 3
+gpu_id = 0
 
 ''' data '''
 # you should prepare your own data in ./data/faces

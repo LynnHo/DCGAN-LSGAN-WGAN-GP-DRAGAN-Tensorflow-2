@@ -17,7 +17,7 @@ lr = 0.0002
 z_dim = 100
 clip = 0.01
 n_critic = 5
-gpu_id = 3
+gpu_id = 0
 
 ''' data '''
 # you should prepare your own data in ./data/img_align_celeba
