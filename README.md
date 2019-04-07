@@ -1,77 +1,91 @@
 ***Recommendation***
 
-- Our GAN based work for facial attribute editing - https://github.com/LynnHo/AttGAN-Tensorflow.
+- Our GAN based work for facial attribute editing - [AttGAN](https://github.com/LynnHo/AttGAN-Tensorflow).
 
----
+***New***
 
-# GANs
+- We re-implement these GANs by **Tensorflow 2**! The old version is here: [v1](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-WGAN-GP-Tensorflow/tree/v1) or in the "v1" directory.
 
-Tensorflow implementation of DCGAN, LSGAN, WGAN and WGAN-GP, and we use DCGAN as the network architecture in all experiments.
+<hr style="height:1px" />
 
-DCGAN: [Unsupervised representation learning with deep convolutional generative adversarial networks](https://arxiv.org/abs/1511.06434)
+<p align="center">
+    <img src="./pics/celeba_dragan.gif" width="49.7%" />  <img src="./pics/anime_dragan.gif" width="49.7%" />
+</p>
 
-LSGAN: [Least squares generative adversarial networks](https://pdfs.semanticscholar.org/0bbc/35bdbd643fb520ce349bdd486ef2c490f1fc.pdf)
+<hr style="height:1px" />
 
-WGAN: [Wasserstein GAN](https://arxiv.org/abs/1701.07875)
+# <p align="center"> GANs - Tensorflow 2 </p>
 
-WGAN-GP: [Improved Training of Wasserstein GANs](http://arxiv.org/abs/1704.00028)
+Tensorflow 2 implementations of [DCGAN](https://arxiv.org/abs/1511.06434), [LSGAN](https://arxiv.org/abs/1611.04076), [WGAN-GP](http://arxiv.org/abs/1704.00028) and [DRAGAN](https://arxiv.org/abs/1705.07215v5).
 
 ## Exemplar results
 
-### Mnist - 50 epoch
-DCGAN - LSGAN
+### Fashion-MNIST
 
-![](./pics/mnist_dcgan_50.jpg) ![](./pics/mnist_lsgan_50.jpg)
+DCGAN                                    | LSGAN                                      | WGAN-GP                                      | DRAGAN
+:---:                                    | :---:                                      | :---:                                        | :---:
+<img src="./pics/fashion-mnist_gan.jpg"> | <img src="./pics/fashion-mnist_lsgan.jpg"> | <img src="./pics/fashion-mnist_wgan-gp.jpg"> | <img src="./pics/fashion-mnist_dragan.jpg">
 
-WGAN - WGAN-GP
+### CelebA
 
-![](./pics/mnist_wgan_50.jpg) ![](./pics/mnist_wgan_gp_50.jpg)
+DCGAN                                 | LSGAN
+:---:                                 | :---:
+<img src="./pics/celeba_gan.jpg">     | <img src="./pics/celeba_lsgan.jpg">
+**WGAN-GP**                           | **DRAGAN**
+<img src="./pics/celeba_wgan-gp.jpg"> | <img src="./pics/celeba_dragan.jpg">
 
-### Celeba
-DCGAN (left: 25 epoch, right: 50 epoch (slight mode collapse))
+### Anime
 
-<img src="./pics/celeba_dcgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_dcgan_50.jpg" width="48%" height="48%">
-
-LSGAN (left: 25 epoch, right: 50 epoch (heavy mode collapse))
-
-<img src="./pics/celeba_lsgan_25.jpg" width="48%" height="48%"> <img src="./pics/celeba_lsgan_50.jpg" width="48%" height="48%">
-
-left: WGAN 50 epoch, right: WGAN-GP 50 epoch
-
-<img src="./pics/celeba_wgan_50.jpg" width="48%" height="48%"> <img src="./pics/celeba_wgan_gp_50.jpg" width="48%" height="48%">
-
-### Cartoon
-left: WGAN 100 epoch, right: WGAN-GP 100 epoch
-
-<img src="./pics/cartoon_wgan_100.jpg" width="48%" height="48%"> <img src="./pics/cartoon_wgan_gp_100.jpg" width="48%" height="48%">
-
-# Prerequisites
-- tensorflow r1.2
-- python 2.7
+**WGAN-GP**                          | **DRAGAN**
+:---:                                | :---:
+<img src="./pics/anime_wgan-gp.jpg"> | <img src="./pics/anime_dragan.jpg">
 
 # Usage
 
-## Train
-```
-python train_mnist_dcgan.py
-python train_celeba_wgan.py
-python train_cartoon_wgan_gp.py
-...
-```
-## Tensorboard
-```
-tensorboard --logdir=./summaries/celeba_wgan --port=6006
-...
-```
+- Prerequisites
 
-## Datasets
-1. Mnist will be automatically downloaded
-2. Celeba should be prepared by yourself in ./data/img_align_celeba/*.jpg
-    - Download the dataset: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0
-    - the above links might be inaccessible, the alternatives are
-        - ***img_align_celeba.zip***
+    - Tensorflow 2.0 Alpha `pip install tensorflow==2.0.0-alpha0`
+    - (if you meet "tf.summary.histogram fails with TypeError" `pip install --upgrade tb-nightly`)
+    - scikit-image, oyaml, tqdm
+    - Python 3.6
+
+- Datasets
+
+    - Fashion-MNIST will be automatically downloaded
+    - CelebA should be prepared by yourself in **./data/img_align_celeba/\*.jpg**
+        - dataset link: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0
+        - the above link might be inaccessible, the alternatives are (find "img_align_celeba.zip")
             - https://pan.baidu.com/s/1eSNpdRG#list/path=%2FCelebA%2FImg or
             - https://drive.google.com/drive/folders/0B7EVK8r0v71pTUZsaXdaSnZBZzg
-3. The cartoon-face dataset should be prepared by yourself in ./data/faces
-    - Download the dataset: https://pan.baidu.com/s/1eSifHcA, password: g5qa
-    - Reference: https://zhuanlan.zhihu.com/p/24767059
+    - the Anime dataset should be prepared by yourself in **./data/faces/\*.jpg**
+        - dataset link: https://pan.baidu.com/s/1eSifHcA, password: g5qa
+        - reference: https://zhuanlan.zhihu.com/p/24767059
+
+- Examples of training
+
+    - Fashion-MNIST DCGAN
+
+        ```console
+        CUDA_VISIBLE_DEVICES=0 python train.py --dataset=fashion_mnist --epoch=25 --adversarial_loss_mode=gan
+        ```
+
+    - CelebA DRAGAN
+
+        ```console
+        CUDA_VISIBLE_DEVICES=0 python train.py --dataset=celeba --epoch=25 --adversarial_loss_mode=gan --gradient_penalty_mode=dragan
+        ```
+
+    - Anime WGAN-GP
+
+        ```console
+        CUDA_VISIBLE_DEVICES=0 python train.py --dataset=anime --epoch=200 --adversarial_loss_mode=wgan --gradient_penalty_mode=wgan-gp --n_d=5
+        ```
+
+    - see more training exampls in [commands.sh](./commands.sh)
+
+    - tensorboard for loss visualization
+
+        ```console
+        tensorboard --logdir ./output/fashion_mnist_gan/summaries --port 6006
+        ```
+

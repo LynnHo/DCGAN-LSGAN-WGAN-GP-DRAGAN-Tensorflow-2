@@ -1,6 +1,8 @@
 *.pyc
-summaries
-sample_images_while_training
-data
-checkpoints
-*dragan*
+__pycache__/
+/data/
+/output/
+/v1/summaries/
+/v1/sample_images_while_training/
+/v1/data/
+/v1/checkpoints/
