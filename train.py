@@ -187,7 +187,7 @@ with train_summary_writer.as_default():
             # sample
             if G_optimizer.iterations.numpy() % 100 == 0:
                 x_fake = sample(z)
-                img = im.immerge(x_fake, n_rows=10)
+                img = im.immerge(x_fake, n_rows=10).squeeze()
                 im.imwrite(img, py.join(sample_dir, 'iter-%09d.jpg' % G_optimizer.iterations.numpy()))
 
         # save checkpoint
