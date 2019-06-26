@@ -75,7 +75,7 @@ elif args.dataset == 'custom':
 # setup the normalization function for discriminator
 if args.gradient_penalty_mode == 'none':
     d_norm = 'batch_norm'
-if args.gradient_penalty_mode in ['dragan', 'wgan-gp']:  # cannot use batch normalization with gradient penalty
+elif args.gradient_penalty_mode in ['dragan', 'wgan-gp']:  # cannot use batch normalization with gradient penalty
     # TODO(Lynn)
     # Layer normalization is more stable than instance normalization here,
     # but instance normalization works in other implementations.
