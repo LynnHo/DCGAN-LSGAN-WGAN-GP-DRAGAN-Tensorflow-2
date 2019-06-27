@@ -4,7 +4,7 @@
 
 ***New***
 
-- We re-implement these GANs by **Tensorflow 2**! The old version is here: [v1](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-WGAN-GP-Tensorflow/tree/v1) or in the "v1" directory.
+- 8 April 2019: We re-implement these GANs by **Tensorflow 2**! The old version is here: [v1](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-WGAN-GP-Tensorflow/tree/v1) or in the "v1" directory.
 - [**PyTorch** Version](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-GP-DRAGAN-Pytorch)
 
 <hr style="height:1px" />
