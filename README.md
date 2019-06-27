@@ -5,6 +5,7 @@
 ***New***
 
 - We re-implement these GANs by **Tensorflow 2**! The old version is here: [v1](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-WGAN-GP-Tensorflow/tree/v1) or in the "v1" directory.
+- [**PyTorch** Version](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-GP-DRAGAN-Pytorch)
 
 <hr style="height:1px" />
 
@@ -54,10 +55,10 @@ DCGAN                                 | LSGAN
 
     - Fashion-MNIST will be automatically downloaded
     - CelebA should be prepared by yourself in **./data/img_align_celeba/\*.jpg**
-        - dataset link: https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0
+        - dataset link: [Dropbox](https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0)
         - the above link might be inaccessible, the alternatives are (find "img_align_celeba.zip")
-            - https://pan.baidu.com/s/1eSNpdRG#list/path=%2FCelebA%2FImg or
-            - https://drive.google.com/drive/folders/0B7EVK8r0v71pTUZsaXdaSnZBZzg
+            - [Baidu Netdisk](https://pan.baidu.com/s/1eSNpdRG#list/path=%2Fsharelink2785600790-938296576863897%2FCelebA%2FImg&parentPath=%2Fsharelink2785600790-938296576863897) or
+            - [Google Drive](https://drive.google.com/drive/folders/0B7EVK8r0v71pTUZsaXdaSnZBZzg)
     - the Anime dataset should be prepared by yourself in **./data/faces/\*.jpg**
         - dataset link: https://pan.baidu.com/s/1eSifHcA, password: g5qa
         - reference: https://zhuanlan.zhihu.com/p/24767059
