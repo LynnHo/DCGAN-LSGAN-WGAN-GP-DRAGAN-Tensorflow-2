@@ -94,8 +94,8 @@ def disk_image_batch_dataset(img_paths,
 
     Parameters
     ----------
-        img_paths : 1d-tensor/ndarray/list of str
-        labels : nested structure of tensors/ndarrays/lists
+    img_paths : 1d-tensor/ndarray/list of str
+    labels : nested structure of tensors/ndarrays/lists
 
     """
     if labels is None:

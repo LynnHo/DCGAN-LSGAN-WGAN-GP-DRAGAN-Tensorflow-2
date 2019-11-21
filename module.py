@@ -1,3 +1,4 @@
+import tensorflow as tf
 import tensorflow_addons as tfa
 import tensorflow.keras as keras
 
@@ -14,7 +15,7 @@ def _get_norm_layer(norm):
     elif norm == 'instance_norm':
         return tfa.layers.InstanceNormalization
     elif norm == 'layer_norm':
-        return tfa.layers.LayerNormalization
+        return keras.layers.LayerNormalization
 
 
 def ConvGenerator(input_shape=(1, 1, 128),
@@ -32,17 +33,17 @@ def ConvGenerator(input_shape=(1, 1, 128),
     d = min(dim * 2 ** (n_upsamplings - 1), dim * 8)
     h = keras.layers.Conv2DTranspose(d, 4, strides=1, padding='valid', use_bias=False)(h)
     h = Norm()(h)
-    h = keras.layers.ReLU()(h)
+    h = tf.nn.relu(h)  # or h = keras.layers.ReLU()(h)
 
     # 2: upsamplings, 4x4 -> 8x8 -> 16x16 -> ...
     for i in range(n_upsamplings - 1):
         d = min(dim * 2 ** (n_upsamplings - 2 - i), dim * 8)
         h = keras.layers.Conv2DTranspose(d, 4, strides=2, padding='same', use_bias=False)(h)
         h = Norm()(h)
-        h = keras.layers.ReLU()(h)
+        h = tf.nn.relu(h)  # or h = keras.layers.ReLU()(h)
 
-    h = keras.layers.Conv2DTranspose(output_channels, 4, strides=2, padding='same')(h)
-    h = keras.layers.Activation('tanh')(h)
+    h = keras.layers.Conv2DTranspose(output_channels, 4, strides=2, padding='same', use_bias=False)(h)
+    h = tf.tanh(h)  # or h = keras.layers.Activation('tanh')(h)
 
     return keras.Model(inputs=inputs, outputs=h, name=name)
 
@@ -59,15 +60,15 @@ def ConvDiscriminator(input_shape=(64, 64, 3),
 
     # 1: downsamplings, ... -> 16x16 -> 8x8 -> 4x4
     h = keras.layers.Conv2D(dim, 4, strides=2, padding='same')(h)
-    h = keras.layers.LeakyReLU(alpha=0.2)(h)
+    h = tf.nn.leaky_relu(h, alpha=0.2)  # keras.layers.LeakyReLU(alpha=0.2)(h)
 
     for i in range(n_downsamplings - 1):
         d = min(dim * 2 ** (i + 1), dim * 8)
         h = keras.layers.Conv2D(d, 4, strides=2, padding='same', use_bias=False)(h)
         h = Norm()(h)
-        h = keras.layers.LeakyReLU(alpha=0.2)(h)
+        h = tf.nn.leaky_relu(h, alpha=0.2)  # or h = keras.layers.LeakyReLU(alpha=0.2)(h)
 
-    # 2: logit
+    # 3: logit
     h = keras.layers.Conv2D(1, 4, strides=1, padding='valid')(h)
 
     return keras.Model(inputs=inputs, outputs=h, name=name)

@@ -1,9 +1,12 @@
 import functools
+import math
 import random
 
 import tensorflow as tf
+import tensorflow_addons as tfa
 
 
+@tf.function
 def center_crop(image, size):
     # for image of shape [batch, height, width, channels] or [height, width, channels]
     if not isinstance(size, (tuple, list)):
@@ -13,6 +16,7 @@ def center_crop(image, size):
     return tf.image.crop_to_bounding_box(image, offset_height, offset_width, size[0], size[1])
 
 
+@tf.function
 def color_jitter(image, brightness=0, contrast=0, saturation=0, hue=0):
     """Color jitter.
 
@@ -38,7 +42,16 @@ def color_jitter(image, brightness=0, contrast=0, saturation=0, hue=0):
     return image
 
 
+@tf.function
 def random_grayscale(image, p=0.1):
-    return tf.cond(pred=tf.random.uniform(shape=(), dtype=tf.float32) < p,
+    return tf.cond(pred=tf.random.uniform(()) < p,
                    true_fn=lambda: tf.image.adjust_saturation(image, 0),
                    false_fn=lambda: image)
+
+
+@tf.function
+def random_rotate(images, max_degrees, interpolation='BILINEAR'):
+    # Randomly rotate image(s) counterclockwise by the angle(s) uniformly chosen from [-max_degree(s), max_degree(s)].
+    max_degrees = tf.convert_to_tensor(max_degrees, dtype=tf.float32)
+    angles = tf.random.uniform(tf.shape(max_degrees), minval=-1.0, maxval=1.0) * max_degrees / 180.0 * math.pi
+    return tfa.image.rotate(images, angles, interpolation=interpolation)
