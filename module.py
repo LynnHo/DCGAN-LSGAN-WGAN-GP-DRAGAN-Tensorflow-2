@@ -42,7 +42,7 @@ def ConvGenerator(input_shape=(1, 1, 128),
         h = Norm()(h)
         h = tf.nn.relu(h)  # or h = keras.layers.ReLU()(h)
 
-    h = keras.layers.Conv2DTranspose(output_channels, 4, strides=2, padding='same', use_bias=False)(h)
+    h = keras.layers.Conv2DTranspose(output_channels, 4, strides=2, padding='same')(h)
     h = tf.tanh(h)  # or h = keras.layers.Activation('tanh')(h)
 
     return keras.Model(inputs=inputs, outputs=h, name=name)
@@ -68,7 +68,7 @@ def ConvDiscriminator(input_shape=(64, 64, 3),
         h = Norm()(h)
         h = tf.nn.leaky_relu(h, alpha=0.2)  # or h = keras.layers.LeakyReLU(alpha=0.2)(h)
 
-    # 3: logit
+    # 2: logit
     h = keras.layers.Conv2D(1, 4, strides=1, padding='valid')(h)
 
     return keras.Model(inputs=inputs, outputs=h, name=name)
