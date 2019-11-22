@@ -60,7 +60,7 @@ def ConvDiscriminator(input_shape=(64, 64, 3),
 
     # 1: downsamplings, ... -> 16x16 -> 8x8 -> 4x4
     h = keras.layers.Conv2D(dim, 4, strides=2, padding='same')(h)
-    h = tf.nn.leaky_relu(h, alpha=0.2)  # keras.layers.LeakyReLU(alpha=0.2)(h)
+    h = tf.nn.leaky_relu(h, alpha=0.2)  # or keras.layers.LeakyReLU(alpha=0.2)(h)
 
     for i in range(n_downsamplings - 1):
         d = min(dim * 2 ** (i + 1), dim * 8)
