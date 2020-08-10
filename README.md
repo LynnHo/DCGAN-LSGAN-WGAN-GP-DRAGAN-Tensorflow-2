@@ -51,7 +51,7 @@ DCGAN                                 | LSGAN
 
     - OpenCV, scikit-image, tqdm, oyaml
 
-    - *we recommend [Anaconda](https://www.anaconda.com/distribution/#download-section) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html#linux-installers), then you can create the AttGAN environment with commands below*
+    - *we recommend [Anaconda](https://www.anaconda.com/distribution/#download-section) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html#linux-installers), then you can create the TensorFlow 2.2 environment with commands below*
 
         ```console
         conda create -n tensorflow-2.2 python=3.6
