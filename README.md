@@ -43,13 +43,31 @@ DCGAN                                 | LSGAN
 
 # Usage
 
-- Prerequisites
+- Environment
 
-    - Tensorflow 2.0 `pip install tensorflow-gpu`
-    - Tensorflow Addons `pip install tensorflow-addons`
-    - (if you meet "tf.summary.histogram fails with TypeError" `pip install --upgrade tb-nightly`)
-    - scikit-image, oyaml, tqdm
     - Python 3.6
+
+    - TensorFlow 2.2, TensorFlow Addons 0.10.0
+
+    - OpenCV, scikit-image, tqdm, oyaml
+
+    - *we recommend [Anaconda](https://www.anaconda.com/distribution/#download-section) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html#linux-installers), then you can create the AttGAN environment with commands below*
+
+        ```console
+        conda create -n tensorflow-2.2 python=3.6
+
+        source activate tensorflow-2.2
+
+        conda install -c anaconda scikit-image
+
+        conda install -c anaconda tqdm
+
+        conda install -c conda-forge oyaml
+
+        conda install -c anaconda tensorflow-gpu=2.2
+
+        pip install tensorflow-addons==0.10.0
+        ```
 
 - Datasets
 
