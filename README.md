@@ -2,7 +2,7 @@
 
 - Our GAN based work for facial attribute editing - [AttGAN](https://github.com/LynnHo/AttGAN-Tensorflow).
 
-***New***
+***News***
 
 - 8 April 2019: We re-implement these GANs by **Tensorflow 2**! The old version is here: [v1](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-WGAN-GP-Tensorflow/tree/v1) or in the "v1" directory.
 - [**PyTorch** Version](https://github.com/LynnHo/DCGAN-LSGAN-WGAN-GP-DRAGAN-Pytorch)
@@ -67,6 +67,12 @@ DCGAN                                 | LSGAN
         conda install -c anaconda tensorflow-gpu=2.2
 
         pip install tensorflow-addons==0.10.0
+        ```
+
+    - *NOTICE: if you create a new conda environment, remember to activate it before any other command*
+
+        ```console
+        source activate tensorflow-2.2
         ```
 
 - Datasets
