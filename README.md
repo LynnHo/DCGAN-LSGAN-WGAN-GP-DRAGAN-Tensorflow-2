@@ -58,13 +58,9 @@ DCGAN                                 | LSGAN
 
         source activate tensorflow-2.2
 
-        conda install -c anaconda scikit-image
-
-        conda install -c anaconda tqdm
+        conda install scikit-image tqdm tensorflow-gpu=2.2
 
         conda install -c conda-forge oyaml
-
-        conda install -c anaconda tensorflow-gpu=2.2
 
         pip install tensorflow-addons==0.10.0
         ```
@@ -79,13 +75,11 @@ DCGAN                                 | LSGAN
 
     - Fashion-MNIST will be automatically downloaded
     - CelebA should be prepared by yourself in **./data/img_align_celeba/\*.jpg**
-        - dataset link: [Dropbox](https://www.dropbox.com/sh/8oqt9vytwxb3s4r/AAB06FXaQRUNtjW9ntaoPGvCa?dl=0)
-        - the above link might be inaccessible, the alternatives are (find "img_align_celeba.zip")
-            - [Baidu Netdisk](https://pan.baidu.com/s/1eSNpdRG#list/path=%2Fsharelink2785600790-938296576863897%2FCelebA%2FImg&parentPath=%2Fsharelink2785600790-938296576863897) or
+        - dataset link (find "img_align_celeba.zip"):
+            - [Baidu Netdisk](https://pan.baidu.com/s/1CRxxhoQ97A5qbsKO7iaAJg) (password rp0s) or
             - [Google Drive](https://drive.google.com/drive/folders/0B7EVK8r0v71pTUZsaXdaSnZBZzg)
     - the Anime dataset should be prepared by yourself in **./data/faces/\*.jpg**
-        - dataset link: https://pan.baidu.com/s/1eSifHcA, password: g5qa
-        - reference: https://zhuanlan.zhihu.com/p/24767059
+        - dataset link: https://www.kaggle.com/splcher/animefacedataset
 
 - Examples of training
 
